@@ -59,10 +59,10 @@ app.delete('/api/notes/:id', (req, res) => {
 const deleteNote = (id, notesArray) => {
     for (let i = 0; i < notesArray.length; i++) {
         let note = notesArray[i];
-        if (note.id == id) {
-            notesArray.splioce(i, 1);
+        if(note.id == id) {
+            notesArray.splice(i, 1);
             fs.writeFileSync(
-                path.join(__dirname, '.db/db.json'),
+                path.join(__dirname, './db/db.json'),
                 JSON.stringify(notesArray, null, 2)
             );
             break;
