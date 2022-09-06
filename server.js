@@ -23,3 +23,13 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
     );
 
+// API Routes //
+app.get ('/api/routes', (req, res) => {
+    res.json(dataBase.slice(1));
+});
+
+app.post('api/routes', (req, res) => {
+    const newNote = createNote(req.body, dataBase);
+    res.json(newNote);
+})
+
