@@ -51,3 +51,26 @@ const createNote = (body, notesArray) => {
     );
     return newNote;
 };
+
+app.delete('/api/notes/:id', (req, res) => {
+    deleteNote(req.params.id, dataBase);
+    res.json(true);
+})
+// Function to delete notes //
+const deleteNote = (id, notesArray) => {
+    for (let i = 0; i < notesArray.length; i++) {
+        let note = notesArray[i];
+        if (note.id == id) {
+            notesArray.splioce(i, 1);
+            fs.writeFileSync(
+                path.join(__dirname, '.db/db.json'),
+                JSON.stringify(notesArray, null, 2)
+            );
+            break;
+        }
+    }
+};
+
+app.listen(PORT, () => {
+    console.log(`App is listening at http://locahost:${PORT}`);
+});
