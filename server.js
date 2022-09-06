@@ -3,10 +3,10 @@
 const express = require("express");
 const fs = require ("fs");
 const db = require("./db/db.json");
-const path = require('path')
+const path = require("path");
 
 // Connect Port //
-const PORT = process.env || 30001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Express //
@@ -25,11 +25,11 @@ app.get('/notes', (req, res) =>
 
 // API Routes //
 app.get ('/api/routes', (req, res) => {
-    res.json(dataBase.slice(1));
+    res.json(db.slice(1));
 });
 
 app.post('api/routes', (req, res) => {
-    const newNote = createNote(req.body, dataBase);
+    const newNote = createNote(req.body, db);
     res.json(newNote);
 })
 
@@ -53,7 +53,7 @@ const createNote = (body, notesArray) => {
 };
 
 app.delete('/api/notes/:id', (req, res) => {
-    deleteNote(req.params.id, dataBase);
+    deleteNote(req.params.id, db);
     res.json(true);
 })
 // Function to delete notes //
