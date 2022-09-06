@@ -24,11 +24,11 @@ app.get('/notes', (req, res) =>
     );
 
 // API Routes //
-app.get ('/api/routes', (req, res) => {
+app.get ('/api/notes', (req, res) => {
     res.json(db.slice(1));
 });
 
-app.post('api/routes', (req, res) => {
+app.post('api/notes', (req, res) => {
     const newNote = createNote(req.body, db);
     res.json(newNote);
 })
@@ -72,5 +72,5 @@ const deleteNote = (id, notesArray) => {
 };
 
 app.listen(PORT, () => {
-    console.log(`App is listening at http://locahost:${PORT}`);
+    console.log(`App is listening at http://localhost:${PORT}`);
 });
